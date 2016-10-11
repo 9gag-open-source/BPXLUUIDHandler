@@ -142,7 +142,7 @@ static CFMutableDictionaryRef CreateKeychainQueryDictionary(void)
 	
 	if (status != noErr)
 	{
-		NSLog(@"BPXLUUIDHandler Keychain Save Error: %ld", status);
+        RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Error Status: %zd", status);
 		uuid = nil;
 	}
 	
@@ -154,7 +154,7 @@ static CFMutableDictionaryRef CreateKeychainQueryDictionary(void)
 
 static NSString *_uuid = nil;
 + (NSString *)UUID
-{
+{    
 	if (_uuid != nil)
 		return _uuid;
 	
@@ -176,7 +176,7 @@ static NSString *_uuid = nil;
 		}
 		else // Any other error, log it and return nil
 		{
-			NSLog(@"BPXLUUIDHandler Unhandled Keychain Error %ld", status);
+            RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Error Status: %zd", status);
 			return nil;
 		}
 	}
@@ -196,7 +196,7 @@ static NSString *_uuid = nil;
 		}
 		else // Any other error, log it and return nil
 		{
-			NSLog(@"BPXLUUIDHandler Unhandled Keychain Error %ld", status);
+            RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Error Status: %zd", status);
 			return nil;
 		}
 	}
@@ -240,7 +240,7 @@ static NSString *_uuid = nil;
 	status = SecItemDelete(query);
 	if (status != noErr)
 	{
-		NSLog(@"BPXLUUIDHandler Keychain Delete Error: %ld", status);
+        RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Keychain Delete Error: %zd", status);		
 	}
 	CFRelease(query);
 }
