@@ -19,6 +19,9 @@
 //  
 
 #import "BPXLUUIDHandler.h"
+#ifndef TODAY_EXTENSION
+#import "RLogger.h"
+#endif
 
 #ifndef ARCLOGIC
 #define ARCLOGIC
@@ -142,7 +145,9 @@ static CFMutableDictionaryRef CreateKeychainQueryDictionary(void)
 	
 	if (status != noErr)
 	{
+#ifndef TODAY_EXTENSION
         RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Error Status: %zd", status);
+#endif
 		uuid = nil;
 	}
 	
@@ -176,7 +181,9 @@ static NSString *_uuid = nil;
 		}
 		else // Any other error, log it and return nil
 		{
+#ifndef TODAY_EXTENSION
             RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Error Status: %zd", status);
+#endif
 			return nil;
 		}
 	}
@@ -196,7 +203,9 @@ static NSString *_uuid = nil;
 		}
 		else // Any other error, log it and return nil
 		{
+#ifndef TODAY_EXTENSION
             RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Error Status: %zd", status);
+#endif
 			return nil;
 		}
 	}
@@ -240,7 +249,9 @@ static NSString *_uuid = nil;
 	status = SecItemDelete(query);
 	if (status != noErr)
 	{
-        RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Keychain Delete Error: %zd", status);		
+#ifndef TODAY_EXTENSION
+        RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Keychain Delete Error: %zd", status);
+#endif
 	}
 	CFRelease(query);
 }
