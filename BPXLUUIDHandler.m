@@ -20,7 +20,6 @@
 
 #import "BPXLUUIDHandler.h"
 #ifndef TODAY_EXTENSION
-#import "RLogger.h"
 #endif
 
 #ifndef ARCLOGIC
@@ -146,7 +145,7 @@ static CFMutableDictionaryRef CreateKeychainQueryDictionary(void)
 	if (status != noErr)
 	{
 #ifndef TODAY_EXTENSION
-        RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Error Status: %zd", status);
+        NSLog(@"Keychain storing error: %d", (int)status);
 #endif
 		uuid = nil;
 	}
@@ -182,7 +181,7 @@ static NSString *_uuid = nil;
 		else // Any other error, log it and return nil
 		{
 #ifndef TODAY_EXTENSION
-            RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Error Status: %zd", status);
+            NSLog(@"Keychain storing error: %d", (int)status);
 #endif
 			return nil;
 		}
@@ -204,7 +203,7 @@ static NSString *_uuid = nil;
 		else // Any other error, log it and return nil
 		{
 #ifndef TODAY_EXTENSION
-            RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Error Status: %zd", status);
+            NSLog(@"Keychain storing error: %d", (int)status);
 #endif
 			return nil;
 		}
@@ -250,7 +249,7 @@ static NSString *_uuid = nil;
 	if (status != noErr)
 	{
 #ifndef TODAY_EXTENSION
-        RLog(@"ERROR_STORING_UUID_TO_KEYCHAIN", 1, @"APP_ERROR", @"Keychain Delete Error: %zd", status);
+        NSLog(@"Keychain Delete Error: %d", (int)status);
 #endif
 	}
 	CFRelease(query);
